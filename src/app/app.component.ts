@@ -15,6 +15,12 @@ export class AppComponent {
 
   constructor(public dialog: MatDialog) { }
 
+  searchTerm: string = '';
+  onSearchTermChange(term: string) {
+    this.searchTerm = term;
+  }
+
+
   openUserRegistrationDialog(): void {
     this.dialog.open(UserRegistrationFormComponent, { width: '280px' });
   }

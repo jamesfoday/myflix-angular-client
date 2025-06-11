@@ -1,0 +1,15 @@
+<div class="welcome-container">
+    <div class="logo"></div>
+
+    <div class="form-wrapper">
+        <mat-card>
+            <h2 class="form-title">{{ showLogin ? 'Login' : 'Sign up' }}</h2>
+            <app-user-login-form *ngIf="showLogin"></app-user-login-form>
+            <app-user-registration-form *ngIf="!showLogin"></app-user-registration-form>
+            <div class="switch-link">
+                <span *ngIf="showLogin">New to myFlix? <a (click)="showLogin = false">Sign up now</a></span>
+                <span *ngIf="!showLogin">Already have an account? <a (click)="showLogin = true">Login</a></span>
+            </div>
+        </mat-card>
+    </div>
+</div>
