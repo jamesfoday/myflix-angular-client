@@ -1,14 +1,14 @@
 <nav class="navbar" *ngIf="isLoggedIn">
-    <div class="navbar-left">
-        <img src="assets/logo.png" alt="MyFlix Logo" class="navbar-logo" />
+    <div class="navbar-left logo">
+
     </div>
     <div class="navbar-center">
-        <input type="text" placeholder="Search movies..." class="navbar-search" />
+        <input type="text" placeholder="Search movies..." class="navbar-search" (input)="onSearch($event)" />
     </div>
     <div class="navbar-right">
         <a *ngIf="isLoggedIn" routerLink="/movies">Home</a>
         <a routerLink="/profile" routerLinkActive="active">Profile</a>
         <a routerLink="/favorites" routerLinkActive="active">Favorites</a>
-        <button *ngIf="isLoggedIn" (click)="logout()">Logout</button>
+        <button class="logout-btn" *ngIf="isLoggedIn" (click)="logout()">Logout</button>
     </div>
 </nav>

@@ -1,5 +1,5 @@
 <!-- Pass movies as input to your movie card component -->
 
 
-<app-navigation-bar></app-navigation-bar>
+<app-navigation-bar *ngIf="isLoggedIn"></app-navigation-bar>
 <router-outlet></router-outlet>

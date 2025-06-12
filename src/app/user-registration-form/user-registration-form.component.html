@@ -1,6 +1,6 @@
-<mat-card>
+<mat-card class="register-container">
     <mat-card-header>
-        <mat-card-title>Sign Up!</mat-card-title>
+
     </mat-card-header>
     <mat-card-content>
         <form #registerForm="ngForm" (ngSubmit)="registerUser()">
@@ -20,8 +20,9 @@
                 <mat-label>Birthday</mat-label>
                 <input matInput [(ngModel)]="userData.Birthday" name="Birthday" type="date" />
             </mat-form-field>
-            <mat-card-actions>
-                <button mat-raised-button color="primary" type="submit" [disabled]="registerForm.invalid">
+            <mat-card-actions class="register-btn-wrapper">
+                <button class="register-btn" mat-raised-button color="primary" type="submit"
+                    [disabled]="registerForm.invalid">
                     Sign Up
                 </button>
             </mat-card-actions>

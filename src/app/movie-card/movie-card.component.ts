@@ -5,6 +5,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { GenreDialogComponent } from '../genre-dialog/genre-dialog.component';
 import { DirectorDialogComponent } from '../director-dialog/director-dialog.component';
 import { MovieDetailsDialogComponent } from '../movie-details-dialog/movie-details-dialog.component';
+import { SearchService } from '../search.service';
 
 @Component({
   selector: 'app-movie-card',
@@ -14,11 +15,13 @@ import { MovieDetailsDialogComponent } from '../movie-details-dialog/movie-detai
 })
 export class MovieCardComponent implements OnInit {
   movies: any[] = [];
-  favoriteMovies: string[] = [];
   filteredMovies: any[] = [];
+  favoriteMovies: string[] = [];
+  searchTerm: string = '';
 
   constructor(
     public fetchApiData: FetchApiDataService,
+    private searchService: SearchService,
     public snackBar: MatSnackBar,
     public dialog: MatDialog
   ) { }
@@ -26,17 +29,34 @@ export class MovieCardComponent implements OnInit {
   ngOnInit(): void {
     this.getAllMovies();
     this.getFavoriteMovies();
+    // Subscribe to search term changes from SearchService
+    this.searchService.searchTerm$.subscribe(term => {
+      this.searchTerm = term;
+      this.filterMovies();
+    });
   }
 
   getAllMovies(): void {
     this.fetchApiData.getAllMovies().subscribe({
       next: (movies) => {
         this.movies = movies;
+        this.filterMovies();
       },
       error: (err) => {
         this.snackBar.open('Failed to load movies.', 'OK', { duration: 3000 });
       }
     });
+  }
+
+  filterMovies(): void {
+    const term = this.searchTerm?.toLowerCase() || '';
+    if (!term) {
+      this.filteredMovies = this.movies;
+      return;
+    }
+    this.filteredMovies = this.movies.filter(movie =>
+      movie.Title.toLowerCase().includes(term)
+    );
   }
 
   getFavoriteMovies(): void {

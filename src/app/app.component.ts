@@ -3,7 +3,6 @@ import { UserRegistrationFormComponent } from './user-registration-form/user-reg
 import { UserLoginFormComponent } from './user-login-form/user-login-form.component';
 import { MatDialog } from '@angular/material/dialog';
 
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -15,10 +14,12 @@ export class AppComponent {
 
   constructor(public dialog: MatDialog) { }
 
-  searchTerm: string = '';
-  onSearchTermChange(term: string) {
-    this.searchTerm = term;
+
+  get isLoggedIn(): boolean {
+    return !!localStorage.getItem('token');
   }
+
+
 
 
   openUserRegistrationDialog(): void {

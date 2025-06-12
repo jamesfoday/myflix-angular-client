@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { SearchService } from '../search.service'; // Import here
 
 @Component({
   selector: 'app-navigation-bar',
@@ -8,14 +9,18 @@ import { Router } from '@angular/router';
   styleUrls: ['./navigation-bar.component.scss']
 })
 export class NavigationBarComponent {
-  constructor(private router: Router) { }
+  constructor(private router: Router, private searchService: SearchService) { }
+
   get isLoggedIn(): boolean {
     return !!localStorage.getItem('token');
   }
 
+  onSearch(event: Event) {
+    const value = (event.target as HTMLInputElement).value;
+    this.searchService.setSearchTerm(value);  // Use the service instead of emit
+  }
 
   logout() {
-    // Clear user/auth data, then redirect to welcome/login page
     localStorage.clear();
     this.router.navigate(['/welcome']);
   }

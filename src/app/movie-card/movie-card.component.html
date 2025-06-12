@@ -1,5 +1,5 @@
 <div class="movie-grid">
-    <mat-card *ngFor="let movie of movies" class="movie-card">
+    <mat-card *ngFor="let movie of filteredMovies" class="movie-card">
         <div class="card-header">
             <img [src]="movie.ImagePath" alt="{{ movie.Title }}" />
             <button class="favorite-btn" [ngClass]="{'favorited': isFavorite(movie._id)}"
@@ -13,9 +13,7 @@
         <mat-card-subtitle>
             Directed by: {{ movie.Director?.Name }}
         </mat-card-subtitle>
-        <mat-card-content>
-            <p>{{ movie.Description }}</p>
-        </mat-card-content>
+
         <div class="card-actions">
             <button mat-button (click)="openGenreDialog(movie.Genre)">Genre</button>
             <button mat-button (click)="openDirectorDialog(movie.Director)">Director</button>

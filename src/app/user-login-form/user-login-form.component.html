@@ -1,7 +1,5 @@
-<mat-card>
-    <mat-card-header>
-        <mat-card-title>Login</mat-card-title>
-    </mat-card-header>
+<mat-card class="login-container">
+
     <mat-card-content>
         <form #loginForm="ngForm" (ngSubmit)="loginUser()">
             <mat-form-field appearance="fill" class="full-width">
@@ -12,8 +10,9 @@
                 <mat-label>Password</mat-label>
                 <input matInput [(ngModel)]="userData.Password" name="Password" type="password" required />
             </mat-form-field>
-            <mat-card-actions>
-                <button mat-raised-button color="primary" type="submit" [disabled]="loginForm.invalid">
+            <mat-card-actions class="login-btn-wrapper">
+                <button class="login-btn" mat-raised-button color="primary" type="submit"
+                    [disabled]="loginForm.invalid">
                     Login
                 </button>
             </mat-card-actions>
