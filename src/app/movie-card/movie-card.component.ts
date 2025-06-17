@@ -7,6 +7,11 @@ import { DirectorDialogComponent } from '../director-dialog/director-dialog.comp
 import { MovieDetailsDialogComponent } from '../movie-details-dialog/movie-details-dialog.component';
 import { SearchService } from '../search.service';
 
+/**
+ * Component that displays a grid of movie cards, supports filtering, 
+ * and lets the user add/remove movies from favorites. 
+ * Users can also view genre, director, and movie details in dialogs.
+ */
 @Component({
   selector: 'app-movie-card',
   standalone: false,
@@ -14,11 +19,25 @@ import { SearchService } from '../search.service';
   styleUrls: ['./movie-card.component.scss']
 })
 export class MovieCardComponent implements OnInit {
+  /** List of all movies loaded from the API */
   movies: any[] = [];
+
+  /** Movies filtered by search term */
   filteredMovies: any[] = [];
+
+  /** List of user's favorite movie IDs */
   favoriteMovies: string[] = [];
+
+  /** The current search term entered by the user */
   searchTerm: string = '';
 
+  /**
+   * Constructs the MovieCardComponent.
+   * @param fetchApiData - Service for fetching movie and user data
+   * @param searchService - Service for observing the user's search term
+   * @param snackBar - Material snackbar for showing notifications
+   * @param dialog - Material dialog service for opening dialogs
+   */
   constructor(
     public fetchApiData: FetchApiDataService,
     private searchService: SearchService,
@@ -26,6 +45,10 @@ export class MovieCardComponent implements OnInit {
     public dialog: MatDialog
   ) { }
 
+  /**
+   * Angular lifecycle hook. Loads all movies and user's favorite movies on component init,
+   * and subscribes to the search term for live filtering.
+   */
   ngOnInit(): void {
     this.getAllMovies();
     this.getFavoriteMovies();
@@ -36,6 +59,9 @@ export class MovieCardComponent implements OnInit {
     });
   }
 
+  /**
+   * Fetches all movies from the backend and applies filtering.
+   */
   getAllMovies(): void {
     this.fetchApiData.getAllMovies().subscribe({
       next: (movies) => {
@@ -48,6 +74,9 @@ export class MovieCardComponent implements OnInit {
     });
   }
 
+  /**
+   * Filters movies based on the current search term.
+   */
   filterMovies(): void {
     const term = this.searchTerm?.toLowerCase() || '';
     if (!term) {
@@ -59,6 +88,9 @@ export class MovieCardComponent implements OnInit {
     );
   }
 
+  /**
+   * Retrieves the user's favorite movies from the backend.
+   */
   getFavoriteMovies(): void {
     this.fetchApiData.getFavoriteMovies().subscribe({
       next: (user) => {
@@ -76,10 +108,19 @@ export class MovieCardComponent implements OnInit {
     });
   }
 
+  /**
+   * Checks if a movie is in the user's favorites.
+   * @param movieId - The ID of the movie
+   * @returns True if the movie is a favorite, false otherwise
+   */
   isFavorite(movieId: string): boolean {
     return this.favoriteMovies.includes(movieId);
   }
 
+  /**
+   * Toggles a movie as favorite or removes it from favorites.
+   * @param movieId - The ID of the movie to add or remove from favorites
+   */
   toggleFavorite(movieId: string): void {
     if (this.isFavorite(movieId)) {
       this.fetchApiData.removeFavoriteMovie(movieId).subscribe({
@@ -104,6 +145,10 @@ export class MovieCardComponent implements OnInit {
     }
   }
 
+  /**
+   * Opens a dialog displaying genre details.
+   * @param genre - The genre object to display
+   */
   openGenreDialog(genre: any): void {
     this.dialog.open(GenreDialogComponent, {
       data: { genre },
@@ -111,6 +156,10 @@ export class MovieCardComponent implements OnInit {
     });
   }
 
+  /**
+   * Opens a dialog displaying director details.
+   * @param director - The director object to display
+   */
   openDirectorDialog(director: any): void {
     this.dialog.open(DirectorDialogComponent, {
       data: { director },
@@ -118,6 +167,10 @@ export class MovieCardComponent implements OnInit {
     });
   }
 
+  /**
+   * Opens a dialog displaying full movie details.
+   * @param movie - The movie object to display
+   */
   openMovieDetailsDialog(movie: any): void {
     this.dialog.open(MovieDetailsDialogComponent, {
       data: { movie },

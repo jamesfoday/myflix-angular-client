@@ -1,59 +1,108 @@
-# MyFlixAngularClient
+# myFlix Angular Client
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.14.
+A single-page Angular application for browsing and managing your favorite movies. Users can register, log in, view movie details, add/remove favorites, and update their profiles. This app connects to the [myFlix API](https://github.com/jamesfoday/myFlix-API).
 
-## Development server
+---
 
-To start a local development server, run:
+## Features
 
-```bash
-ng serve
-```
+- User registration & login (JWT authentication)
+- Browse all movies, view details, filter and search
+- Add or remove movies from favorites
+- View/update user profile, delete account
+- Responsive Angular Material design
+- Dialogs for genre, director, and details
+- Angular routing
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+---
 
-## Code scaffolding
+## Demo
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+[Deployed App](https://jamesfoday.github.io/myflix-angular-client/)
 
-```bash
-ng generate component component-name
-```
+---
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## Tech Stack
 
-```bash
-ng generate --help
-```
+- Angular
+- TypeScript
+- Angular Material
+- RxJS
+- TypeDoc for documentation
 
-## Building
+---
 
-To build the project run:
+## Installation
 
-```bash
-ng build
-```
+1. **Clone the repository**
+    ```bash
+    git clone https://github.com/jamesfoday/myflix-angular-client.git
+    cd myflix-angular-client
+    ```
+2. **Install dependencies**
+    ```bash
+    npm install
+    ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+---
 
-## Running unit tests
+## Running the App
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+- **Development server**
+    ```bash
+    ng serve
+    ```
+    Navigate to `http://localhost:4200/`
 
-```bash
-ng test
-```
+- **Production build**
+    ```bash
+    ng build --configuration production
+    ```
 
-## Running end-to-end tests
+---
 
-For end-to-end (e2e) testing, run:
+## Documentation
 
-```bash
-ng e2e
-```
+- API docs: See [myFlix API backend](https://github.com/jamesfoday/myFlix-API/tree/main/out)
+- TypeScript code documentation:
+    - Generated with [TypeDoc](https://typedoc.org/)
+    - Generate docs:
+        ```bash
+        npx typedoc src/app
+        ```
+    - Open the generated `/docs/index.html` in your browser
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+- All classes, components, and services are commented for TypeDoc.
 
-## Additional Resources
+---
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+## Contributing
+
+1. Fork this repo
+2. Create a new feature branch:  
+    `git checkout -b feature/your-feature`
+3. Commit your changes:  
+    `git commit -m 'Add feature'`
+4. Push to GitHub:  
+    `git push origin feature/your-feature`
+5. Open a Pull Request
+
+---
+
+## Credits
+
+- [James Foday](https://github.com/jamesfoday)  
+- CareerFoundry Full Stack Web Development Program  
+- Angular, Angular Material, and the open source community
+
+---
+
+## License
+
+MIT License
+
+---
+
+> **Declaration:**  
+> Documentation and some code comments were generated and reviewed with OpenAI’s ChatGPT.  
+> All code and docs are manually reviewed for accuracy.

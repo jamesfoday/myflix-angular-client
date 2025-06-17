@@ -5,6 +5,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { AuthGuard } from './auth.guard';
+import { FooterComponent } from './footer/footer.component';
+
 
 // Angular Material modules
 import { MatInputModule } from '@angular/material/input';
@@ -53,6 +55,7 @@ const appRoutes: Routes = [
     DirectorDialogComponent,
     MovieDetailsDialogComponent,
     FavoritesComponent,
+    FooterComponent,
     NavigationBarComponent
   ],
   imports: [

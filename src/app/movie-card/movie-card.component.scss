@@ -3,6 +3,7 @@
     grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
     gap: 24px;
     padding: 32px;
+    padding-bottom: 150px !important;
     background: #eaf8ec;
     min-height: 100vh;
 }
